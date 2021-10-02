@@ -1,6 +1,5 @@
 console.log("This is main.js");
 
-
 window.onload = () => {
     window.fetch("public/scaler.pkl")
         .then(async function (res) {
@@ -15,10 +14,14 @@ async function main() {
         indexURL: "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/",
     });
 
+    let output = document.getElementById("output")
+    output.value = "loading\n"
+
     await pyodide.loadPackage("numpy");
     await pyodide.loadPackage("scikit-learn");
 
     console.log("Pyodide is ready.");
+    output.value += "Pyodide is ready\n";
 
     await pyodide.runPython(`
     import js
